@@ -1,0 +1,51 @@
+<script lang="ts">
+    import { showPage } from "../lib/pageStore"
+    export let name: string
+    export let id: string
+    export let img: string
+</script>
+
+<button class="main" on:click={() => showPage('chatRoom',id)}>
+    <img class="image" src={img} alt={name}/>
+    <div class="info">
+        <h3>{name}</h3>
+        <h5>{id}</h5>
+    </div>
+</button>
+
+<style>
+.main{
+    all:unset;
+    border: 2px solid #333;
+    height:3cm;
+    width:auto;
+    margin:0.3cm;
+    display:flex;
+}
+
+.image{
+    background-color: #333;
+    aspect-ratio: 1/1;
+    margin: 0.2cm;
+    object-fit: cover;
+}
+
+h3 {
+    margin: 0;
+}
+
+h5 {
+    width: 100%;
+    margin:0;
+    margin-top: auto;
+    text-align: right;
+    color: #333;
+}
+
+.info {
+    display:flex;
+    flex-direction: column;
+    flex:1;
+    padding: 10px;
+}
+</style>
