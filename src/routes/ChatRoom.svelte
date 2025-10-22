@@ -63,7 +63,7 @@
 
 <div class="chat-layout">
     <header>
-        <button on:click={() => showPage('roomList')}><img src="src/assets/back.svg" alt="back"></button>
+        <button on:click={() => showPage('roomList')}><img src="/back.svg" alt="back"></button>
         <img class="pfp"
         src="{roomData.roomImage}"
         alt="room"

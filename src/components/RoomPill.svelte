@@ -19,8 +19,24 @@
     border: 2px solid #333;
     height:3cm;
     width:auto;
-    margin:0.3cm;
+    margin:0.1cm 0cm;
     display:flex;
+    transition: all 0.3s ease-out;
+    background-color: black;
+}
+
+.main:hover{
+    background-color: #333;
+    transition: all 0s;
+}
+
+.main h5{
+    transition: all 0.3s ease-out;
+}
+
+.main:hover h5{
+    color:white;
+    transition: all 0s;
 }
 
 .image{
@@ -48,4 +64,5 @@ h5 {
     flex:1;
     padding: 10px;
 }
+
 </style>
