@@ -63,13 +63,14 @@
 
 <div class="chat-layout">
     <header>
-        <button on:click={() => showPage('roomList')}><img src="/back.svg" alt="back"></button>
-        <img class="pfp"
+        <button class="back" on:click={() => showPage('roomList')}><img src="/back.svg" alt="back"></button>
+        <img class="room-image"
         src="{roomData.roomImage}"
         alt="room"
         >
         <h2>{roomData.roomName}</h2>
     </header>
+
     <div bind:this={chatContainer} class="chat-room">
         {#each messages as m}
             <ChatMessage owner={m.owner.displayName} text={m.text} time={m.sentAt} pfp={m.owner.profilePicture} />
@@ -84,14 +85,14 @@
 </div>
 
 <style>
-    .pfp {
+    .room-image {
         width: 50px;
         height :50px;
         margin-top:auto; margin-bottom:auto;
         border-radius: 100%;
     }
 
-    header button {
+    .back {
         all: unset;
         transition: all 0.4s;
         height:60px;
@@ -100,13 +101,13 @@
         background-color: rgb(53, 53, 53);
     }
 
-    header button:hover {
+    .back:hover {
         background-color: rgb(105, 105, 105);
         width: 70px;
         transition:all 0.1s;
     }
 
-    header button img {
+    .back img {
         height:60px;
         width:60px;
     }

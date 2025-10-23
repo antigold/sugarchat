@@ -30,12 +30,14 @@
     transition: all 0s;
 }
 
-.main h5{
+.main h3,
+.main h5 {
     transition: all 0.3s ease-out;
 }
 
-.main:hover h5{
-    color:white;
+.main:hover h3,
+.main:hover h5 {
+    color: white;
     transition: all 0s;
 }
 
