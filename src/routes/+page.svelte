@@ -15,8 +15,9 @@
   import { currentPage, showPage } from '../lib/pageStore';
   import RoomList from './RoomList.svelte';
   import ChatRoom from './ChatRoom.svelte';
+  import Login from './Login.svelte';
   import "../styles.css"
-  const pages = { roomList: RoomList, chatRoom: ChatRoom } as const;
+  const pages = { roomList: RoomList, chatRoom: ChatRoom, login: Login } as const;
 </script>
 
 <svelte:component this={pages[$currentPage] as any} {...{ showPage }}/>

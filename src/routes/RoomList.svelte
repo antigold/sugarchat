@@ -1,18 +1,14 @@
 <script lang="ts">
   import RoomPill from '../components/RoomPill.svelte'
   import { onMount } from 'svelte';
+  import { loadRooms } from '../lib/roomApi'
   
   let roomsContainer: HTMLDivElement;
   let rooms: any[] = []
 
-  async function loadRooms() {
-      const res = await fetch(`http://127.0.0.1:1300/rooms`);
-      rooms = await res.json();
-  }
-
-  onMount(() => {
-        loadRooms();
-    });
+  onMount(async () => {
+    rooms = await loadRooms();
+  });
 
 </script>
 

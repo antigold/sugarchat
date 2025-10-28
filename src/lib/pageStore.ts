@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
-export type Page = 'roomList' | 'chatRoom';
+export type Page = 'roomList' | 'chatRoom' | 'login';
 
-export const currentPage = writable<Page>('roomList');
+export const currentPage = writable<Page>('login');
 export const currentChat = writable<string | null>(null);
 
 export function showPage(p: Page, extra?: string) {
