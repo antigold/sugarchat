@@ -8,7 +8,9 @@
 <button class="main" on:click={() => showPage('chatRoom',id)}>
     <img class="image" src={img} alt={name}/>
     <div class="info">
-        <h3>{name}</h3>
+        <div class="infotitle">
+            <h3>{name}</h3>
+        </div>
         <h5>{id}</h5>
     </div>
 </button>
@@ -46,6 +48,10 @@
     aspect-ratio: 1/1;
     margin: 0.2cm;
     object-fit: cover;
+}
+
+.infotitle{
+    display:flex;
 }
 
 h3 {

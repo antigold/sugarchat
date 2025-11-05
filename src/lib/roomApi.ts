@@ -15,3 +15,16 @@ export async function loadRooms() {
     
     return await res.json();
 }
+
+export async function joinRoom(room:string){
+    const t = get(token);
+    const res = await fetch(`http://127.0.0.1:1300/rooms/${room}/join`, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${t}`,
+        },
+    });
+    
+    console.log(await res.json());
+    return loadRooms();
+}

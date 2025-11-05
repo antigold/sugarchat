@@ -2,7 +2,8 @@
     import { showPage, currentChat } from "../lib/pageStore"
     import ChatMessage from '../components/ChatMessage.svelte'
     import { onMount, tick } from 'svelte';
-    
+
+    import Popup from '../components/Popup.svelte'
     let roomSettings: boolean = false;
 
     let messages: any[] = []
@@ -87,16 +88,13 @@
 
 <!-- settings popup -->
 {#if roomSettings}
-  <div class="overlay">
-    <div class="popup-header">
-        <h3>Room settings</h3>
-        <button on:click={() => roomSettings = false}>
-            <img src="cross.svg" alt="exit"></button>
-        </div>
-    <div class="popup">
-      <p>settings</p>
-    </div>
-  </div>
+<Popup
+title="join room"
+open={roomSettings}
+onClose={() => roomSettings = false}
+>
+<p>settings</p>
+</Popup>
 {/if}
 
 
@@ -104,12 +102,13 @@
 <style>
     .room-button {
         all:unset;
+        margin: auto 0;
+        height:50px;
     }
     
     .room-image {
         width: 50px;
         height :50px;
-        margin-top:auto; margin-bottom:auto;
         border-radius: 100%;
     }
 
