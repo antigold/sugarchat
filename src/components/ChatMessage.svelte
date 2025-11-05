@@ -5,8 +5,15 @@
   export let pfp: string
 
   const date = new Date(time);
-  const timeformatted = date.toLocaleTimeString('en-US', {hour12: false});
-</script>
+  const timeformatted = date.toLocaleString('en-US', {
+    hour12: false,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  })
+  </script>
 
 <div class="chat-message">
   <strong class="name">{owner}</strong>
@@ -44,7 +51,7 @@
 
 .bubble {
   background: rgb(54, 54, 54);
-  padding: 5px;
+  padding: 5px 10px;
   margin-left: 15px;
   border-radius: 12px 12px 12px 0px;
   width:auto;

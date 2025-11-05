@@ -93,13 +93,33 @@ title="join room"
 open={roomSettings}
 onClose={() => roomSettings = false}
 >
-<p>settings</p>
+<div class="popup-body">
+    <img class="popup-image" src={roomData.roomImage} alt="room"/>
+    <div>
+        <h1>{roomData.roomName}</h1>
+        <button>Leave room</button> <!-- useless for now-->
+    </div>
+</div>
 </Popup>
 {/if}
 
 
 
 <style>
+    .popup-body h1{
+        margin: 10px;
+    }
+    
+    .popup-body{
+        display:flex;
+        gap:10px;
+    }
+
+    .popup-image{
+        aspect-ratio: 1/1;
+        width: 30%;
+    }
+
     .room-button {
         all:unset;
         margin: auto 0;
@@ -110,10 +130,13 @@ onClose={() => roomSettings = false}
         width: 50px;
         height :50px;
         border-radius: 100%;
+        transition: all 300ms
     }
 
     .room-button:hover .room-image {
-        filter:brightness(1.1);
+        filter:brightness(1.2);
+        transform: scale(1.1);
+        transition: all 50ms;
     }
     
     .back {
@@ -181,55 +204,6 @@ onClose={() => roomSettings = false}
         display: flex;
         flex-direction: column;
         height: 100vh; /* full screen */
-    }
-
-    .overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        display:flex;
-        flex-direction: column;
-    }
- 
-
-    .popup-header {
-        min-width: 250px;
-        max-width: 90vh;
-        padding: 0px 20px;
-        background-color: #111;
-        border-radius: 12px 12px 0 0;
-        height:2.5em;
-        display:flex;
-        justify-content: space-between;
-    }
-
-    .popup-header h3 {
-        padding: 0;
-        margin: auto 0;
-    }
-
-    .popup-header button {
-        all: unset;
-        padding: 0;
-        margin: 0;
-    }
-
-    .popup-header button img {
-        aspect-ratio: 1/1;
-        width: 2.5em;
-        filter:invert(1);
-    }
-
-    .popup {
-        background: #222;
-        color: white;
-        padding: 20px;
-        border-radius: 0 0 12px 12px;
-        min-width: 250px;
-        max-width: 90vh;
     }
 
 </style>
