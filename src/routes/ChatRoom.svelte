@@ -2,6 +2,7 @@
     import { showPage, currentChat } from "../lib/pageStore"
     import ChatMessage from '../components/ChatMessage.svelte'
     import { onMount, tick } from 'svelte';
+    import { leaveRoom } from '../lib/roomApi'
 
     import Popup from '../components/Popup.svelte'
     let roomSettings: boolean = false;
@@ -11,8 +12,14 @@
     let chatContainer: HTMLDivElement;
     let msgText: string;
     
-    const userId: string = "67096aa8-632c-4c9a-b1c9-671388d85975";
+    const userId: string = "67096aa8-632c-4c9a-b1c9-671388d85975"; //fix this later
     $: roomId = $currentChat;
+
+    async function handleLeave() {
+        if (!roomId) return;
+        await leaveRoom(roomId);
+        showPage('roomList')
+    }
 
     async function getRoomData() {
         const res = await fetch(`http://127.0.0.1:1300/rooms/${roomId}`);
@@ -93,13 +100,13 @@ title="join room"
 open={roomSettings}
 onClose={() => roomSettings = false}
 >
-<div class="popup-body">
-    <img class="popup-image" src={roomData.roomImage} alt="room"/>
-    <div>
-        <h1>{roomData.roomName}</h1>
-        <button>Leave room</button> <!-- useless for now-->
+    <div class="popup-body">
+        <img class="popup-image" src={roomData.roomImage} alt="room"/>
+        <div>
+            <h1>{roomData.roomName}</h1>
+            <button on:click={handleLeave}>Leave room</button> <!-- useless for now-->  
+        </div>
     </div>
-</div>
 </Popup>
 {/if}
 

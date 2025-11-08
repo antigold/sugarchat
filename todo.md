@@ -6,3 +6,11 @@ create rooms
 modify rooms
 latest to be spoken in, is the first chat
 different name colors, chosen by the user
+add bio for rooms
+
+# short term
+check messages for empty spaces
+fix ownership of messages and use token
+add a room password
+improve login layout
+fix token lasting 30 mins or whatever

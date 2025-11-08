@@ -28,3 +28,16 @@ export async function joinRoom(room:string){
     console.log(await res.json());
     return loadRooms();
 }
+
+export async function leaveRoom(room:string){
+    console.log(room);
+    const t = get(token);
+    const res = await fetch(`http://127.0.0.1:1300/rooms/${room}/leave`, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${t}`,
+        },
+    });
+    
+    console.log(await res.json());
+}
