@@ -71,4 +71,24 @@
         max-width: 90vh;
     }
     
+    :global(.popup-input){
+        all:unset;
+        background-color: #333;
+    }
+
+    :global(.popup-menu){
+        padding:0;
+        margin:0;
+    }
+
+    :global(.popup-button){
+        all:unset;
+        background-color: #333;
+        padding:0 0.5em;
+    }
+
+    :global(.popup-button:hover){
+        background-color: #444;
+    }
+
 </style>

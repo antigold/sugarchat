@@ -1,9 +1,11 @@
 import { token } from "../stores/auth";
 import { get } from "svelte/store";
+import { domain } from "./domain";
+var API = get(domain);
 
 export async function loadRooms() {
     const t = get(token);
-    const res = await fetch(`http://127.0.0.1:1300/rooms/`, {
+    const res = await fetch(`${API}/rooms/`, {
         headers: {
         Authorization: `Bearer ${t}`,
         },
@@ -18,7 +20,7 @@ export async function loadRooms() {
 
 export async function joinRoom(room:string){
     const t = get(token);
-    const res = await fetch(`http://127.0.0.1:1300/rooms/${room}/join`, {
+    const res = await fetch(`${API}/rooms/${room}/join`, {
         method: "POST",
         headers: {
             Authorization: `Bearer ${t}`,
@@ -32,7 +34,7 @@ export async function joinRoom(room:string){
 export async function leaveRoom(room:string){
     console.log(room);
     const t = get(token);
-    const res = await fetch(`http://127.0.0.1:1300/rooms/${room}/leave`, {
+    const res = await fetch(`${API}/rooms/${room}/leave`, {
         method: "POST",
         headers: {
             Authorization: `Bearer ${t}`,

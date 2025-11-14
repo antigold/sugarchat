@@ -103,8 +103,8 @@ onClose={() => roomSettings = false}
     <div class="popup-body">
         <img class="popup-image" src={roomData.roomImage} alt="room"/>
         <div>
-            <h1>{roomData.roomName}</h1>
-            <button on:click={handleLeave}>Leave room</button> <!-- useless for now-->  
+            <h4 class="popup-menu">{roomData.roomName}</h4>
+            <button class="popup-button" on:click={handleLeave}>Leave room</button>
         </div>
     </div>
 </Popup>
@@ -113,10 +113,6 @@ onClose={() => roomSettings = false}
 
 
 <style>
-    .popup-body h1{
-        margin: 10px;
-    }
-    
     .popup-body{
         display:flex;
         gap:10px;

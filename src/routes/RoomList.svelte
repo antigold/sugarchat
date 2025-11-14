@@ -2,15 +2,22 @@
     import RoomPill from '../components/RoomPill.svelte'
     import { onMount } from 'svelte';
     import { loadRooms, joinRoom } from '../lib/roomApi'
+    import { logout } from '../lib/api'
     
     let roomsContainer: HTMLDivElement;
     let rooms: any[] = []
     import Popup from '../components/Popup.svelte'
+  import { showPage } from '$lib/pageStore';
     let joinPopup: boolean = false
     let roomToJoin: string = "";
 
     async function handleJoin() {
         rooms = await joinRoom(roomToJoin);
+    }
+
+    async function handleLogout(){
+        logout();
+        showPage("login")
     }
     
     onMount(async () => {
@@ -37,14 +44,15 @@
 <!-- join popup -->
 {#if joinPopup}
 <Popup
-title="join room"
+title="Account settings"
 open={joinPopup}
 onClose={() => joinPopup = false}
 >
-<p>insert room id</p>
-<input type="text" bind:value={roomToJoin}>
-
-<button on:click={handleJoin}>join</button>
+<button class="popup-button" on:click={handleLogout}>Log out</button>
+<hr>
+<h4 class="popup-menu">insert room id</h4>
+<input class="popup-input" type="text" bind:value={roomToJoin}>
+<button class="popup-button" on:click={handleJoin}>join</button>
 </Popup>
 {/if}
 
@@ -75,7 +83,7 @@ onClose={() => joinPopup = false}
         padding-left: 20px;
     } */
 
-    header button{
+    .pfpbutton{
         border-radius: 100%;
         margin:5px;
         margin-left:auto;
@@ -85,6 +93,8 @@ onClose={() => joinPopup = false}
         border: 0;
     }
 
-
+    hr{
+        border:1px solid #333;
+    }
 </style>
 

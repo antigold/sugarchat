@@ -1,7 +1,16 @@
 import axios from "axios";
 import { token, user } from "../stores/auth";
+import { get } from "svelte/store";
+import { domain } from "./domain";
 
-const API = "http://127.0.0.1:1300"; // your backend
+var API = get(domain); // your backend
+
+export async function logout(){
+  token.set(null);
+  user.set(null);
+
+  localStorage.removeItem("authToken");
+}
 
 export async function verifySavedLogin() {
   const savedToken = localStorage.getItem("authToken"); //get token
@@ -19,7 +28,13 @@ export async function verifySavedLogin() {
   }
 }
 
-export async function login(username: string, password: string) {
+export async function login(username: string, password: string, targetDomain:string) {
+  if(targetDomain){
+    domain.set(targetDomain); // domain persists
+    console.log(targetDomain)
+  }
+  else return;
+
   try {
     const res = await axios.post(`${API}/users/login`, { username, password });
     token.set(res.data.token);

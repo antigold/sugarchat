@@ -1,9 +1,12 @@
 import { token } from "../stores/auth";
+import { get } from "svelte/store";
+import { domain } from "./domain";
+var API = get(domain);
 
 async function getRoomData(roomId : string) { //MOVE ME TO ROOMAPI
     const t = token;
 
-    const res = await fetch(`http://127.0.0.1:1300/rooms/${roomId}`, {
+    const res = await fetch(`${API}/rooms/${roomId}`, {
         headers: { Authorization: `Bearer ${t}` }
     });
     return await res.json();
@@ -12,7 +15,7 @@ async function getRoomData(roomId : string) { //MOVE ME TO ROOMAPI
 async function loadMessages(roomId : string) {
     const t = token;
 
-    const res = await fetch(`http://127.0.0.1:1300/rooms/${roomId}/messages`, {
+    const res = await fetch(`${API}/rooms/${roomId}/messages`, {
         headers: { Authorization: `Bearer ${t}` }
     });
     return await res.json();
@@ -26,7 +29,7 @@ async function sendMessage(msgText:string,userId:string,roomId:string) {
     const t = token;
     // if(!msgText) return;
     try {
-        const res = await fetch(`http://127.0.0.1:1300/rooms/${roomId}/messages`, {
+        const res = await fetch(`${API}/rooms/${roomId}/messages`, {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${t}`,'Content-Type': 'application/json' },
             body: JSON.stringify({
