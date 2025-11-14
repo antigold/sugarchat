@@ -1,7 +1,7 @@
 <script lang="ts">
     import { showPage, currentChat } from "../lib/pageStore"
     import ChatMessage from '../components/ChatMessage.svelte'
-    import { onMount, tick } from 'svelte';
+    import { onDestroy, onMount, tick } from 'svelte';
     import { leaveRoom } from '../lib/roomApi'
 
     import Popup from '../components/Popup.svelte'
@@ -63,12 +63,19 @@
 
     function handleKey(e: KeyboardEvent) {
         if (e.key === 'Enter') sendMessage();
+        if (e.key === 'Escape') showPage("roomList");
     }
 
     onMount(() => {
         getRoomData();
         loadMessages();
+        window.addEventListener("keydown", handleKey);
     });
+
+    onDestroy(() => {
+        window.removeEventListener("keydown", handleKey);
+    });
+
 </script>
 
 <div class="chat-layout">
